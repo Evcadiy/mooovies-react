@@ -9,7 +9,7 @@ function App() {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
   const [url, setUrl] = useState(
-    `https://api.themoviedb.org/3/discover/movie?api_key=6a453533174f0df02a1e9ccd85b21d77&page=${currentPage}`
+    `https://api.themoviedb.org/3/discover/movie?api_key=f3d3be40f30e42d34e445a75e9232ceb&page=${currentPage}`
   );
 
   const moviesPerPage = 10;
@@ -22,10 +22,10 @@ function App() {
 
   useEffect(() => {
     if (searchTerm) {
-      const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=6a453533174f0df02a1e9ccd85b21d77&query=${searchTerm}&page=${currentPage}`;
+      const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=f3d3be40f30e42d34e445a75e9232ceb&query=${searchTerm}&page=${currentPage}`;
       setUrl(searchUrl);
     } else {
-      const discoverUrl = `https://api.themoviedb.org/3/discover/movie?api_key=6a453533174f0df02a1e9ccd85b21d77&page=${currentPage}`;
+      const discoverUrl = `https://api.themoviedb.org/3/discover/movie?api_key=f3d3be40f30e42d34e445a75e9232ceb&page=${currentPage}`;
       setUrl(discoverUrl);
     }
   }, [searchTerm, currentPage]);
