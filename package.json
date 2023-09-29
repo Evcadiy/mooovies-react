@@ -2,7 +2,7 @@
   "name": "movies",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://evcadiy.github.io/mooovies-react/",
+  "homepage": "https://vercel.com/evcadiys-projects",
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
