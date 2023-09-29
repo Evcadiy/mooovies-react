@@ -10,6 +10,7 @@
 .site-title h1 {
   display: flex;
   font-size: 2rem;
+  cursor: pointer;
 }
 
 .search-bar {

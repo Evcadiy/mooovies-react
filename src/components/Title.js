@@ -1,9 +1,9 @@
 import React from "react";
 
-const Title = () => {
+const Title = (props) => {
   return (
     <div className="site-title">
-      <h1>Mooovies</h1>
+      <h1 onClick={props.onPageBack}>Mooovies</h1>
     </div>
   );
 };

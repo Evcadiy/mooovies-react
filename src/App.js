@@ -20,6 +20,12 @@ function App() {
     setCurrentPage(1);
   };
 
+  const pageBack = () => {
+    setUrl(
+      "https://api.themoviedb.org/3/discover/movie?api_key=28d0c63420a32d8b298e34f0e06a8573&page=1"
+    );
+  };
+
   useEffect(() => {
     if (searchTerm) {
       const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=28d0c63420a32d8b298e34f0e06a8573&query=${searchTerm}&page=${currentPage}`;
@@ -33,7 +39,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Title />
+        <Title onPageBack={pageBack} />
         <Search onSearch={handleSearch} />
         <MovieList
           currentPage={currentPage}

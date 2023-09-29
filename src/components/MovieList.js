@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./MovieList.css";
+import BasicModal from "./BasicModal";
 
 const MovieList = ({ currentPage, moviesPerPage, API_URL }) => {
   const [movies, setMovies] = useState([]);
+  const [selectedMovie, setSelectedMovie] = useState(null);
 
   const getMovies = (url) => {
     axios.get(url).then((response) => setMovies(response.data.results));
+  };
+
+  const openModal = (movie) => {
+    setSelectedMovie(movie);
   };
 
   useEffect(() => {
@@ -23,10 +29,18 @@ const MovieList = ({ currentPage, moviesPerPage, API_URL }) => {
               alt={movie.title}
             />
             <p className="movie-title">{movie.title}</p>
+            <button onClick={() => openModal(movie)}>More Information</button>
           </li>
         ))
       ) : (
         <p>No movies found.</p>
+      )}
+
+      {selectedMovie && (
+        <BasicModal
+          selectedMovie={selectedMovie}
+          onClose={() => setSelectedMovie(null)}
+        />
       )}
     </ul>
   );
