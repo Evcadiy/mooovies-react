@@ -11,23 +11,25 @@
   display: flex;
   font-size: 2rem;
   cursor: pointer;
+  transition: all 0.3s ease;
+}
+.site-title h1::before {
+  content: "←";
+  opacity: 0;
+  color: #fff;
+  font-size: 2rem;
+  display: inline-block;
+  margin-left: -8px;
+  transition: opacity 0.3s ease, margin-left 0.3s ease;
 }
 
-.search-bar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.site-title h1:hover {
+  color: transparent;
 }
 
-.search-bar input {
-  padding: 5px;
-  margin-right: 5px;
-  border: 1px solid #007bff;
-  border-radius: 5px;
-  padding: 5px 10px;
-  font-size: 1rem;
-  width: 200px;
-  transition: all 0.3s;
+.site-title h1:hover::before {
+  opacity: 1;
+  margin-left: 90px;
 }
 
 .search-bar input:focus {
