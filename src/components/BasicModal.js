@@ -16,10 +16,10 @@ const style = {
   p: 4,
 };
 
-export default function BasicModal({ selectedMovie, onClose }) {
+export default function BasicModal({ selectedMovie, onClose, getGenreNames }) {
   return (
     <Modal
-      open={!!selectedMovie}
+      open={selectedMovie}
       onClose={onClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
@@ -35,10 +35,23 @@ export default function BasicModal({ selectedMovie, onClose }) {
               <p className="closeBtn" onClick={onClose}>
                 ×
               </p>
-              {selectedMovie.title}
+              <div className="info">
+                <p style={{ fontSize: 25, fontWeight: 700 }}>
+                  {selectedMovie.title}
+                </p>
+                <p>Vote / Votes : {selectedMovie.vote_average}</p>
+                <p>Original language : {selectedMovie.original_language}</p>
+                <p>
+                  Genre : {getGenreNames(selectedMovie.genre_ids).join(", ")}
+                </p>
+                <p>Release date : {selectedMovie.release_date}</p>
+              </div>
             </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              {selectedMovie.overview}
+              <div style={{ marginTop: -250 }}>
+                <p style={{ fontSize: 25, fontWeight: 700 }}>About</p>
+                <p>{selectedMovie.overview}</p>
+              </div>
             </Typography>
           </>
         )}

@@ -4,14 +4,18 @@ import Title from "./components/Title";
 import Search from "./components/Search";
 import MovieList from "./components/MovieList";
 import Pagination from "./components/Pagination";
+import GenreButtons from "./components/GenreButton";
 
 function App() {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
+  const [genresData, setGenresData] = useState({});
   const [url, setUrl] = useState(
     `https://api.themoviedb.org/3/discover/movie?api_key=28d0c63420a32d8b298e34f0e06a8573&page=${currentPage}`
   );
 
+  const GENRE_API =
+    "https://api.themoviedb.org/3/genre/movie/list?api_key=28d0c63420a32d8b298e34f0e06a8573";
   const moviesPerPage = 10;
   const totalPages = 100;
 
@@ -20,10 +24,12 @@ function App() {
     setCurrentPage(1);
   };
 
+  const updateGenres = (genreData) => {
+    setGenresData(genreData);
+  };
+
   const pageBack = () => {
-    setUrl(
-      "https://api.themoviedb.org/3/discover/movie?api_key=28d0c63420a32d8b298e34f0e06a8573&page=1"
-    );
+    window.location.reload();
   };
 
   useEffect(() => {
@@ -41,10 +47,13 @@ function App() {
       <header className="App-header">
         <Title onPageBack={pageBack} />
         <Search onSearch={handleSearch} />
+        <GenreButtons genresData={genresData} />
         <MovieList
           currentPage={currentPage}
           moviesPerPage={moviesPerPage}
           API_URL={url}
+          GENRE_API={GENRE_API}
+          updateGenres={updateGenres}
         />
         <Pagination
           currentPage={currentPage}

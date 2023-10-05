@@ -7,6 +7,10 @@
   color: white;
 }
 
+.site-title {
+  width: 200px;
+}
+
 .site-title h1 {
   display: flex;
   font-size: 2rem;
@@ -32,13 +36,22 @@
   margin-left: 90px;
 }
 
+.search-bar input {
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 5px 0px 0px 5px;
+  font-size: 16px;
+  border: none;
+}
+
 .search-bar input:focus {
   outline: none;
-  border-color: #ff8c00;
 }
 
 .search-bar button {
   background-color: #007bff;
+  font-size: 16px;
+  height: 38.5px;
   color: white;
   border: none;
   border-radius: 0 5px 5px 0;

@@ -7,6 +7,14 @@ img {
   font-weight: 550;
   position: absolute;
   top: -7%;
-  left: 90%;
+  left: 92.5%;
   cursor: pointer;
+}
+
+.info {
+  position: relative;
+  top: -290px;
+  left: 50%;
+  max-width: 225px;
+  font-size: 17px;
 }

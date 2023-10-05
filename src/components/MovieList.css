@@ -19,6 +19,10 @@
   color: #fff;
 }
 
+.movie {
+  position: relative;
+}
+
 .movie img {
   width: 100%;
   height: auto;
@@ -29,6 +33,61 @@
   font-size: 16px;
   font-weight: bold;
   text-align: center;
+}
+
+.movie-date {
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.green {
+  border: 3px solid rgb(52, 182, 108);
+  position: absolute;
+  top: 7px;
+  left: 245px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: grey;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.orange {
+  border: 3px solid orange;
+  position: absolute;
+  top: 7px;
+  left: 245px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: grey;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.red {
+  border: 3px solid red;
+  position: absolute;
+  top: 7px;
+  left: 245px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: grey;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .movie button {
@@ -43,4 +102,12 @@
 
 .movie button:hover {
   background-color: #0056b3;
+}
+
+.genre {
+  color: #eac231;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  padding: 0px 0px 10px 0px;
 }
