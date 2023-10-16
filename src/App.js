@@ -10,12 +10,11 @@ function App() {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
   const [genresData, setGenresData] = useState({});
-  const [url, setUrl] = useState(
-    `https://api.themoviedb.org/3/discover/movie?api_key=28d0c63420a32d8b298e34f0e06a8573&page=${currentPage}`
-  );
+  const [url, setUrl] = useState("");
 
-  const GENRE_API =
-    "https://api.themoviedb.org/3/genre/movie/list?api_key=28d0c63420a32d8b298e34f0e06a8573";
+  const apiKey = process.env.REACT_APP_API_KEY;
+
+  const GENRE_API = `https://api.themoviedb.org/3/genre/movie/list?${apiKey}`;
   const moviesPerPage = 10;
   const totalPages = 100;
 
@@ -34,10 +33,10 @@ function App() {
 
   useEffect(() => {
     if (searchTerm) {
-      const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=28d0c63420a32d8b298e34f0e06a8573&query=${searchTerm}&page=${currentPage}`;
+      const searchUrl = `https://api.themoviedb.org/3/search/movie?${apiKey}&query=${searchTerm}&page=${currentPage}`;
       setUrl(searchUrl);
     } else {
-      const discoverUrl = `https://api.themoviedb.org/3/discover/movie?api_key=28d0c63420a32d8b298e34f0e06a8573&page=${currentPage}`;
+      const discoverUrl = `https://api.themoviedb.org/3/discover/movie?${apiKey}&page=${currentPage}`;
       setUrl(discoverUrl);
     }
   }, [searchTerm, currentPage]);
@@ -47,7 +46,7 @@ function App() {
       <header className="App-header">
         <Title onPageBack={pageBack} />
         <Search onSearch={handleSearch} />
-        <GenreButtons genresData={genresData} />
+        <GenreButtons genresData={genresData} API_URL={url} />
         <MovieList
           currentPage={currentPage}
           moviesPerPage={moviesPerPage}

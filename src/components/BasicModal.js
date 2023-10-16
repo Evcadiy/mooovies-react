@@ -29,14 +29,18 @@ export default function BasicModal({ selectedMovie, onClose, getGenreNames }) {
           <>
             <Typography id="modal-modal-title" variant="h6" component="h2">
               <img
-                src={`https://image.tmdb.org/t/p/w500${selectedMovie.poster_path}`}
+                src={
+                  selectedMovie.poster_path === null
+                    ? "https://cinemaone.net/images/movie_placeholder.png"
+                    : `https://image.tmdb.org/t/p/w500${selectedMovie.poster_path}`
+                }
                 alt={selectedMovie.title}
               />
               <p className="closeBtn" onClick={onClose}>
                 ×
               </p>
               <div className="info">
-                <p style={{ fontSize: 25, fontWeight: 700 }}>
+                <p style={{ fontSize: 25, fontWeight: 700, maxWidth: 200 }}>
                   {selectedMovie.title}
                 </p>
                 <p>Vote / Votes : {selectedMovie.vote_average}</p>

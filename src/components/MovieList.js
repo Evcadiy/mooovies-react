@@ -48,7 +48,11 @@ const MovieList = ({ currentPage, API_URL, GENRE_API, updateGenres }) => {
         movies.map((movie) => (
           <li key={movie.id} className="movie">
             <img
-              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+              src={
+                movie.poster_path === null
+                  ? "https://cinemaone.net/images/movie_placeholder.png"
+                  : `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+              }
               alt={movie.title}
             />
             <div className={getClassByVote(movie.vote_average)}>

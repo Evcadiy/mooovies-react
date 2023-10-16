@@ -9,6 +9,7 @@ img {
   top: -7%;
   left: 92.5%;
   cursor: pointer;
+  z-index: 50;
 }
 
 .info {
