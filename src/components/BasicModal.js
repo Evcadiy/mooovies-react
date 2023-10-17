@@ -9,7 +9,7 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 400,
+  maxWidth: 500,
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
@@ -29,6 +29,7 @@ export default function BasicModal({ selectedMovie, onClose, getGenreNames }) {
           <>
             <Typography id="modal-modal-title" variant="h6" component="h2">
               <img
+                className="modal-img"
                 src={
                   selectedMovie.poster_path === null
                     ? "https://cinemaone.net/images/movie_placeholder.png"
@@ -40,9 +41,7 @@ export default function BasicModal({ selectedMovie, onClose, getGenreNames }) {
                 ×
               </p>
               <div className="info">
-                <p style={{ fontSize: 25, fontWeight: 700, maxWidth: 200 }}>
-                  {selectedMovie.title}
-                </p>
+                <p className="title">{selectedMovie.title}</p>
                 <p>Vote / Votes : {selectedMovie.vote_average}</p>
                 <p>Original language : {selectedMovie.original_language}</p>
                 <p>
@@ -53,8 +52,8 @@ export default function BasicModal({ selectedMovie, onClose, getGenreNames }) {
             </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
               <div style={{ marginTop: -250 }}>
-                <p style={{ fontSize: 25, fontWeight: 700 }}>About</p>
-                <p>{selectedMovie.overview}</p>
+                <p className="about-title">About</p>
+                <p className="about">{selectedMovie.overview}</p>
               </div>
             </Typography>
           </>
