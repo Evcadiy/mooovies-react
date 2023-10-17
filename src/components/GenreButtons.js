@@ -1,14 +1,15 @@
+import React from "react";
 import "./GenreButtons.css";
 
-const GenreButtons = ({ genresData, API_URL }) => {
-  console.log(genresData);
-
+const GenreButtons = ({ genresData, setSelectedGenre }) => {
   const genreNames = Object.values(genresData);
 
   const addGenre = (e) => {
-    const selectedGenre = e.target.textContent;
-    console.log(selectedGenre);
-    console.log(API_URL);
+    const selectedGenreName = e.target.textContent;
+    const selectedGenreId = Object.keys(genresData).find(
+      (id) => genresData[id] === selectedGenreName
+    );
+    setSelectedGenre(selectedGenreId);
   };
 
   return (

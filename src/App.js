@@ -4,27 +4,28 @@ import Title from "./components/Title";
 import Search from "./components/Search";
 import MovieList from "./components/MovieList";
 import Pagination from "./components/Pagination";
-import GenreButtons from "./components/GenreButton";
+import GenreButtons from "./components/GenreButtons";
 
 function App() {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
   const [genresData, setGenresData] = useState({});
   const [url, setUrl] = useState("");
-
+  const [selectedGenre, setSelectedGenre] = useState("");
   const apiKey = process.env.REACT_APP_API_KEY;
-
-  const GENRE_API = `https://api.themoviedb.org/3/genre/movie/list?${apiKey}`;
+  const GENRE_API = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}`;
   const moviesPerPage = 10;
   const totalPages = 100;
 
   const handleSearch = (searchTerm) => {
     setSearchTerm(searchTerm);
     setCurrentPage(1);
+    setSelectedGenre("");
   };
 
-  const updateGenres = (genreData) => {
-    setGenresData(genreData);
+  const handleGenreSelect = (selectedGenreId) => {
+    setSelectedGenre(selectedGenreId);
+    setCurrentPage(1);
   };
 
   const pageBack = () => {
@@ -32,27 +33,32 @@ function App() {
   };
 
   useEffect(() => {
+    let updatedUrl = "";
     if (searchTerm) {
-      const searchUrl = `https://api.themoviedb.org/3/search/movie?${apiKey}&query=${searchTerm}&page=${currentPage}`;
-      setUrl(searchUrl);
+      updatedUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${searchTerm}&page=${currentPage}`;
+    } else if (selectedGenre) {
+      updatedUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&page=${currentPage}&with_genres=${selectedGenre}`;
     } else {
-      const discoverUrl = `https://api.themoviedb.org/3/discover/movie?${apiKey}&page=${currentPage}`;
-      setUrl(discoverUrl);
+      updatedUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&page=${currentPage}`;
     }
-  }, [searchTerm, currentPage]);
+    setUrl(updatedUrl);
+  }, [searchTerm, currentPage, selectedGenre]);
 
   return (
     <div className="App">
       <header className="App-header">
         <Title onPageBack={pageBack} />
         <Search onSearch={handleSearch} />
-        <GenreButtons genresData={genresData} API_URL={url} />
+        <GenreButtons
+          genresData={genresData}
+          setSelectedGenre={handleGenreSelect}
+        />
         <MovieList
           currentPage={currentPage}
           moviesPerPage={moviesPerPage}
           API_URL={url}
           GENRE_API={GENRE_API}
-          updateGenres={updateGenres}
+          updateGenres={setGenresData}
         />
         <Pagination
           currentPage={currentPage}
