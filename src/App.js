@@ -12,7 +12,7 @@ function App() {
   const [genresData, setGenresData] = useState({});
   const [url, setUrl] = useState("");
   const [selectedGenre, setSelectedGenre] = useState("");
-  const apiKey = "bfc7b384dc8f9c961efaa3349043fc8d";
+  const apiKey = process.env.REACT_APP_API_KEY;
   const GENRE_API = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}`;
   const moviesPerPage = 10;
   const totalPages = 100;
