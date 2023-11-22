@@ -12,7 +12,7 @@ function App() {
   const [genresData, setGenresData] = useState({});
   const [url, setUrl] = useState("");
   const [selectedGenre, setSelectedGenre] = useState("");
-  const apiKey = process.env.REACT_APP_API_KEY;
+  const apiKey = "8f801807dab7518b9295fa3d960d508e";
   const GENRE_API = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}`;
   const moviesPerPage = 10;
   const totalPages = 100;
@@ -35,11 +35,11 @@ function App() {
   useEffect(() => {
     let updatedUrl = "";
     if (searchTerm) {
-      updatedUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${searchTerm}&page=${currentPage}`;
+      updatedUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&query=${searchTerm}&page=${currentPage}`;
     } else if (selectedGenre) {
-      updatedUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&page=${currentPage}&with_genres=${selectedGenre}`;
+      updatedUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&page=${currentPage}&with_genres=${selectedGenre}`;
     } else {
-      updatedUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&page=${currentPage}`;
+      updatedUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&page=${currentPage}`;
     }
     setUrl(updatedUrl);
   }, [apiKey, searchTerm, currentPage, selectedGenre]);
