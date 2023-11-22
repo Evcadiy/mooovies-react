@@ -42,7 +42,7 @@ function App() {
       updatedUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&page=${currentPage}`;
     }
     setUrl(updatedUrl);
-  }, [searchTerm, currentPage, selectedGenre]);
+  }, [apiKey, searchTerm, currentPage, selectedGenre]);
 
   return (
     <div className="App">

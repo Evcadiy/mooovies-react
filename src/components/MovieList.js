@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+// import axios from "axios";
 import "./MovieList.css";
 import BasicModal from "./BasicModal";
 
@@ -8,19 +8,56 @@ const MovieList = ({ currentPage, API_URL, GENRE_API, updateGenres }) => {
   const [genres, setGenres] = useState({});
   const [selectedMovie, setSelectedMovie] = useState(null);
 
+  // const getMovies = (url) => {
+  //   axios.get(url).then((response) => setMovies(response.data.results));
+  // };
+
+  // const getGenres = (url) => {
+  //   axios.get(url).then((response) => {
+  //     const genreData = {};
+  //     response.data.genres.forEach((genre) => {
+  //       genreData[genre.id] = genre.name;
+  //     });
+  //     setGenres(genreData);
+  //     updateGenres(genreData);
+  //   });
+  // };
+
   const getMovies = (url) => {
-    axios.get(url).then((response) => setMovies(response.data.results));
+    fetch(url)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => setMovies(data.results))
+      .catch((error) => {
+        // Обработка ошибок запроса
+        console.error("There was a problem with the fetch operation:", error);
+      });
   };
 
   const getGenres = (url) => {
-    axios.get(url).then((response) => {
-      const genreData = {};
-      response.data.genres.forEach((genre) => {
-        genreData[genre.id] = genre.name;
+    fetch(url)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        const genreData = {};
+        data.genres.forEach((genre) => {
+          genreData[genre.id] = genre.name;
+        });
+        setGenres(genreData);
+        updateGenres(genreData);
+      })
+      .catch((error) => {
+        // Обработка ошибок запроса
+        console.error("There was a problem with the fetch operation:", error);
       });
-      setGenres(genreData);
-      updateGenres(genreData);
-    });
   };
 
   const getGenreNames = (genreIds) => {
